@@ -20,3 +20,10 @@ content: [
         },
         ]
  ```
+ 
+ ````js
+ <Slider :content="content" />
+ ````
+ 
+ #### Arka plan için 'static' klasörü içine 'image' adında bir klasör oluşturun ve içine arkaplan imajınızın ismini 'slider-bg.jpg' yaparak atın.
+ 
