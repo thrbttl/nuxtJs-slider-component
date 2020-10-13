@@ -1,0 +1,26 @@
+{
+  "name": "nuxtjslider",
+  "version": "0.1.0",
+  "description": "NuxtJs-slider-component",
+  "main": "Slider.vue",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thrbttl/nuxtJs-slider-component.git"
+  },
+  "keywords": [
+    "javascript",
+    "nuxtjs",
+    "vuejs",
+    "slider",
+    "component"
+  ],
+  "author": "Tahir Battal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thrbttl/nuxtJs-slider-component/issues"
+  },
+  "homepage": "https://github.com/thrbttl/nuxtJs-slider-component#readme"
+}

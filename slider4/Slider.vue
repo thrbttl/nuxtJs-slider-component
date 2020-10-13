@@ -15,6 +15,14 @@
       </div>
     </div>
 
+    <div class="cardp">
+      <div id="photos" ref="photos">
+        <div v-for="(item, index) in content" :key="index" class="img-card">
+          <img :src="item.photo" class="image" :alt="item.photo" />
+        </div>
+      </div>
+    </div>
+
     <div class="controller">
       <div v-for="(item, index) in content.length" :key="index">
         <div
@@ -48,13 +56,15 @@ export default {
     click(e) {
       if (e.target.id == 1) {
         this.s = e.target.id;
-        this.$refs.slider.style.transform = "translateX(0)";
+        this.$refs.slider.style.transform = "translateY(0)";
+        this.$refs.photos.style.transform = "translateX(0)";
         this.$refs.active.style.top = "0px";
       } else if (e.target.id > 1) {
         this.s = e.target.id;
         let d = e.target.id * this.num - this.num;
         let p = e.target.id * this.percent - this.percent;
-        this.$refs.slider.style.transform = "translateX(-" + p + "%" + ")";
+        this.$refs.slider.style.transform = "translateY(-" + p + "%" + ")";
+        this.$refs.photos.style.transform = "translateX(-" + p + "%" + ")";
         this.$refs.active.style.top = d + "px";
       } else {
         console.log(err);
@@ -65,6 +75,8 @@ export default {
     setInterval(() => {
       if (this.$refs.active.style.top != 320 - this.num + "px") {
         this.$refs.slider.style.transform +=
+          "translateY(-" + this.percent + "%" + ")";
+        this.$refs.photos.style.transform +=
           "translateX(-" + this.percent + "%" + ")";
 
         this.$refs.active.style.top = "";
@@ -84,12 +96,14 @@ export default {
         }
         console.log(this.$refs.active.style.top);
       } else if (this.$refs.active.style.top == 320 - this.num + "px") {
-        this.$refs.slider.style.transform = "translateX(0)";
+        this.$refs.slider.style.transform = "translateY(0)";
+        this.$refs.photos.style.transform = "translateX(0)";
         this.s = 0;
         this.$refs.active.style.top = "0px";
         console.log(this.$refs.active.style.top);
       } else {
-        this.$refs.slider.style.transform = "translateX(0)";
+        this.$refs.slider.style.transform = "translateY(0)";
+        this.$refs.photos.style.transform = "translateX(0)";
         this.s = 0;
         this.$refs.active.style.top = "0px";
         console.log(this.$refs.active.style.top);
@@ -118,9 +132,8 @@ export default {
 }
 
 .cardp {
-  width: auto;
-  max-height: 333px;
-  min-height: 333px;
+  width: 500px;
+  height: auto;
   position: absolute;
   left: 54%;
   top: 40%;
@@ -145,22 +158,23 @@ export default {
 }
 
 #photos {
-  display: block;
+  display: inline-flex;
   transition: 1s;
 }
 
 .msg-container {
-  width: 247px;
+  width: 500px;
   height: 280px;
   position: absolute;
   left: 14%;
   top: 50%;
   transform: translateY(-100px);
   overflow: hidden;
+  z-index: 90;
 }
 
 #slider {
-  display: inline-flex;
+  display: block;
   transition: 1s;
 }
 
@@ -180,17 +194,6 @@ export default {
   color: #dddddd;
   font-size: 15px;
   line-height: 25px;
-}
-
-.msg-col a {
-  display: inline-block;
-  text-decoration: none;
-  color: #555555;
-  background-color: #fff;
-  font-size: 15px;
-  padding: 10px 35px;
-  border-radius: 30px;
-  margin-top: 25px;
 }
 
 .controller {
@@ -219,24 +222,13 @@ export default {
   transition: 0.5s;
 }
 
-
-@media only screen and (min-width: 701px){
-   .msg-container {
-    width: 550px;
-  }
-
-  .msg-col {
-    width: 550px;
-  }
-}
-
-@media only screen and (min-width: 451px) and (max-width: 700px) {
+@media only screen and (min-width: 701px) and (max-width: 1180px) {
   .msg-container {
-    width: 400px;
+    width: 285px;
   }
 
   .msg-col {
-    width: 400px;
+    width: 285px;
   }
 
   .msg-col h1 {
@@ -244,21 +236,39 @@ export default {
   }
 
   .msg-col p {
-    font-size: 17px;
+    font-size: 16px;
+  }
+
+  .cardp {
+    width: 415px;
+    max-height: 329px;
+    min-height: 345px;
+    left: 55%;
+  }
+  .cardp {
+    width: 100%;
+    left: 34%;
+    top: 36%;
+  }
+
+  .image {
+    width: 465px;
+    margin-right: 315px;
   }
 
   .controller {
     z-index: 99;
+    top: 53%;
   }
 }
 
-@media only screen and (min-width: 321px) and (max-width: 450px){
+@media only screen and (min-width: 451px) and (max-width: 700px) {
   .msg-container {
-    width: 300px;
+    width: auto;
   }
 
   .msg-col {
-    width: 300px;
+    width: 386px;
   }
 
   .msg-col h1 {
@@ -269,29 +279,85 @@ export default {
     font-size: 14px;
   }
 
-  .controller {
-    z-index: 99;
-  }
-}
-@media only screen and (max-width: 320px){
-.msg-container {
-    width: 220px;
+  .cardp {
+    width: 415px;
+    left: -25px;
+    top: 36%;
   }
 
-  .msg-col {
-    width: 220px;
-  }
-
-  .msg-col h1 {
-    font-size: 40px;
-  }
-
-  .msg-col p {
-    font-size: 14px;
+  .image {
+    width: 605px;
+    margin-right: 25px;
   }
 
   .controller {
     z-index: 99;
     top: 50%;
-  }}
+  }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 450px) {
+  .msg-container {
+    width: 275px;
+  }
+
+  .msg-col {
+    width: 275px;
+  }
+
+  .msg-col h1 {
+    font-size: 40px;
+  }
+
+  .msg-col p {
+    font-size: 14px;
+  }
+
+  .cardp {
+    width: 100%;
+    left: 0%;
+    top: 37%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .image {
+    width: auto;
+  }
+
+  .controller {
+    z-index: 99;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .msg-container {
+    width: 220px;
+  }
+
+  .msg-col {
+    width: 220px;
+  }
+
+  .msg-col h1 {
+    font-size: 40px;
+  }
+
+  .msg-col p {
+    font-size: 14px;
+  }
+
+  .cardp {
+    width: 90%;
+    left: -2%;
+    top: 36%;
+  }
+
+  .image {
+    width: auto;
+    margin-right: 35px;
+  }
+  .controller {
+    z-index: 99;
+  }
+}
 </style>

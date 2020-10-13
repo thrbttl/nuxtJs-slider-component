@@ -48,13 +48,13 @@ export default {
     click(e) {
       if (e.target.id == 1) {
         this.s = e.target.id;
-        this.$refs.slider.style.transform = "translateX(0)";
+        this.$refs.slider.style.transform = "translateY(0)";
         this.$refs.active.style.top = "0px";
       } else if (e.target.id > 1) {
         this.s = e.target.id;
         let d = e.target.id * this.num - this.num;
         let p = e.target.id * this.percent - this.percent;
-        this.$refs.slider.style.transform = "translateX(-" + p + "%" + ")";
+        this.$refs.slider.style.transform = "translateY(-" + p + "%" + ")";
         this.$refs.active.style.top = d + "px";
       } else {
         console.log(err);
@@ -65,7 +65,7 @@ export default {
     setInterval(() => {
       if (this.$refs.active.style.top != 320 - this.num + "px") {
         this.$refs.slider.style.transform +=
-          "translateX(-" + this.percent + "%" + ")";
+          "translateY(-" + this.percent + "%" + ")";
 
         this.$refs.active.style.top = "";
 
@@ -84,12 +84,12 @@ export default {
         }
         console.log(this.$refs.active.style.top);
       } else if (this.$refs.active.style.top == 320 - this.num + "px") {
-        this.$refs.slider.style.transform = "translateX(0)";
+        this.$refs.slider.style.transform = "translateY(0)";
         this.s = 0;
         this.$refs.active.style.top = "0px";
         console.log(this.$refs.active.style.top);
       } else {
-        this.$refs.slider.style.transform = "translateX(0)";
+        this.$refs.slider.style.transform = "translateY(0)";
         this.s = 0;
         this.$refs.active.style.top = "0px";
         console.log(this.$refs.active.style.top);
@@ -131,7 +131,7 @@ export default {
 .img-card {
   min-height: 333px;
   max-height: 333px;
-  margin-bottom: 20px;
+  margin-right: 10px;
 }
 
 .image {
@@ -150,7 +150,7 @@ export default {
 }
 
 .msg-container {
-  width: 247px;
+  width: 500px;
   height: 280px;
   position: absolute;
   left: 14%;
@@ -160,7 +160,7 @@ export default {
 }
 
 #slider {
-  display: inline-flex;
+  display: block;
   transition: 1s;
 }
 
@@ -200,7 +200,7 @@ export default {
   background: #c0c0c0;
   position: absolute;
   top: 55%;
-  right: 50px;
+  right: 20px;
   transform: translateY(-50%);
 }
 
@@ -219,9 +219,8 @@ export default {
   transition: 0.5s;
 }
 
-
-@media only screen and (min-width: 701px){
-   .msg-container {
+@media only screen and (min-width: 701px) {
+  .msg-container {
     width: 550px;
   }
 
@@ -252,7 +251,7 @@ export default {
   }
 }
 
-@media only screen and (min-width: 321px) and (max-width: 450px){
+@media only screen and (min-width: 321px) and (max-width: 450px) {
   .msg-container {
     width: 300px;
   }
@@ -271,10 +270,11 @@ export default {
 
   .controller {
     z-index: 99;
+    right: 20px;
   }
 }
-@media only screen and (max-width: 320px){
-.msg-container {
+@media only screen and (max-width: 320px) {
+  .msg-container {
     width: 220px;
   }
 
@@ -293,5 +293,7 @@ export default {
   .controller {
     z-index: 99;
     top: 50%;
-  }}
+    right: 20px;
+  }
+}
 </style>
